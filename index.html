@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>抽奖系统</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎉 小田的神奇奖励池 🎉</h1>
+        </header>
+        
+        <!-- 奖品管理板块 -->
+        <section class="prize-management">
+            <h2>奖品管理</h2>
+            <div class="add-prize-form">
+                <input type="text" id="prizeName" placeholder="奖品名称">
+                <input type="number" id="prizeRate" placeholder="中奖概率(%)" min="0" max="100" step="0.1">
+                <button onclick="addPrize()">添加奖品</button>
+            </div>
+        </section>
+
+        <!-- 当前奖品列表 -->
+        <section class="current-prizes">
+            <h2>当前奖品列表</h2>
+            <div class="prize-stats">
+                <span class="total-rate">总概率: <span id="totalRate">0.0%</span></span>
+                <span class="remaining-rate">剩余: <span id="remainingRate">100.0%</span></span>
+                <span class="no-prize-rate">未中奖概率: <span id="noPrizeRate">100.0%</span></span>
+            </div>
+            <div id="prizeList" class="prize-list"></div>
+        </section>
+
+        <!-- 任务模块 -->
+        <section class="task-management">
+            <h2>任务管理</h2>
+            <div class="add-task-form">
+                <input type="text" id="taskName" placeholder="任务名称">
+                <button onclick="addTask()">添加任务</button>
+            </div>
+            <div class="task-stats">
+                <span class="total-tasks">总任务: <span id="totalTasks">0</span></span>
+                <span class="completed-tasks">已完成: <span id="completedTasks">0</span></span>
+                <span class="lottery-chances">抽奖机会: <span id="lotteryChances">0</span></span>
+            </div>
+            <div id="taskList" class="task-list"></div>
+        </section>
+
+        <!-- 抽奖板块 -->
+        <section class="lottery-section">
+            <h2> </h2>
+            <div class="wheel-container">
+                <canvas id="wheelCanvas" width="500" height="500"></canvas>
+                <div class="wheel-pointer"></div>
+                <button id="spinBtn" onclick="spin()">抽奖啦</button>
+            </div>
+            <div id="result" class="result"></div>
+        </section>
+
+        <!-- 已获得奖品板块 -->
+        <section class="won-prizes">
+            <h2>已获得奖品</h2>
+            <div id="wonPrizeList" class="won-prize-list"></div>
+        </section>
+    </div>
+
+    <!-- 抽奖结果弹窗 -->
+    <div id="resultModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>🎊 抽奖结果 🎊</h3>
+            </div>
+            <div class="modal-body">
+                <div id="modalIcon" class="modal-icon"></div>
+                <div id="modalMessage" class="modal-message"></div>
+                <div id="modalPrize" class="modal-prize"></div>
+            </div>
+            <div class="modal-footer">
+                <button id="modalCloseBtn" class="modal-btn" onclick="closeResultModal()">确定</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
